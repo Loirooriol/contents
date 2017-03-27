@@ -80,8 +80,8 @@ When its [`display`](https://www.w3.org/TR/css-display-3/#the-display-properties
 > However, sometimes it is desirable to generate content outside the element. This can be accomplished by adding
 > 
 > ```css
-> .container { display: contents; }
-> .container::contents { display: block; /* border, margin, ... */ }
+> div { display: contents; }
+> div::contents { display: block; /* border, margin, ... */ }
 > ```
 >
 > resulting in

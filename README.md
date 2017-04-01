@@ -13,6 +13,11 @@ When its [`display`](https://www.w3.org/TR/css-display-3/#the-display-properties
 
 When its [`display`](https://www.w3.org/TR/css-display-3/#the-display-properties) property computes to [`none`](https://www.w3.org/TR/css-display-3/#valdef-display-none), the pseudo-element and the actual contents of the originating element generate no boxes. [`::marker`](https://drafts.csswg.org/css-pseudo-4/#marker-pseudo), [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before) and [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after) pseudo-elements generate boxes as ausual, according to their [`display`](https://www.w3.org/TR/css-display-3/#the-display-properties) and [`content`](https://drafts.csswg.org/css-content-3/#content-property) properties.
 
+When attached to a replaced element, the `::contents` pseudo-element has no effect.
+
+> **Issue:** 
+> What about "kinda-replaced" elements?
+
 > **Example**
 > 
 > The [fictional tag sequence](https://www.w3.org/TR/css-pseudo-4/#fictional-tag-sequence) for this HTML fragment with the following rules
@@ -103,6 +108,5 @@ A `::contents` pseudo-element [inherits](https://www.w3.org/TR/css-cascade-4/#in
 
 A child element [inherits](https://www.w3.org/TR/css-cascade-4/#inheriting) [inherited properties](https://www.w3.org/TR/css-cascade-4/#inherited-property) from the `::contents` pseudo-element originated by the parent element.
 
-> **Issue**
-> 
+> **Issue:**
 > What should happen with non-inherited properties? Same as for [`::first-line`](https://www.w3.org/TR/css-pseudo-4/#first-line-pseudo) ([issue 1097](https://github.com/w3c/csswg-drafts/issues/1097))

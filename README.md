@@ -119,15 +119,17 @@ As a [tree-abiding pseudo-element](https://www.w3.org/TR/css-pseudo-4/#treelike)
  
     For elements and `::contents` pseudo-elements, this computes to [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents).
     
+    > **Issue:** Should [`normal`](https://drafts.csswg.org/css-content/#valdef-content-normal) compute to [`none`](https://drafts.csswg.org/css-content/#valdef-content-none) on `::contents` pseudo-elements in case the computed value of the [`content`](https://drafts.csswg.org/css-content/#content-property) property of the originating element does not include [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents)?
+    
     For [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before) and [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after) pseudo-elements, this computes to [`none`](https://drafts.csswg.org/css-content/#valdef-content-none).
     
  - [`none`](https://drafts.csswg.org/css-content/#valdef-content-none)
   
-    On elements, this inhibits the `::contents` pseudo-element (together with the actual contents of the element) from being rendered as a child of this element, as if the pseudo-element had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
-    
-    On `::contents` pseudo-elements, this inhibits the actual children of the originating element from being rendered as children of this pseudo-element, as if the element was empty. 
+    On elements, this inhibits the creation of the `::contents` pseudo-element, as if the pseudo-element had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
 
     On other pseudo-elements, this inhibits the creation of the pseudo-element as if it had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
+    
+    > **Note:** Inhibiting the `::contents` pseudo-element also prevents the actual contents of the element from being rendered, unless [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before) or [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after) include [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) in the computed value of their [`content`](https://drafts.csswg.org/css-content/#content-property) property.
     
  - [`<content-replacement>`](https://drafts.csswg.org/css-content/#typedef-content-content-replacement)
  
@@ -137,18 +139,18 @@ As a [tree-abiding pseudo-element](https://www.w3.org/TR/css-pseudo-4/#treelike)
 
  - [`<content-list>`](https://drafts.csswg.org/css-content/#typedef-content-content-list)
  
-    On elements, this replaces the `::contents` pseudo-element with one or more anonymous inline boxes corresponding to the specified values, in the order specified. The `::contents` pseudo-element (together with the actual contents of the element) is suppressed and does not generate boxes, as if it had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
+    On elements, this replaces the `::contents` pseudo-element with one or more anonymous inline boxes corresponding to the specified values, in the order specified. Unless [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) appears in the `<content-list>`, the `::contents` pseudo-element is suppressed and does not generate boxes, as if it had [`content: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
     
     On pseudo-elements, this replaces the pseudo-element’s contents with one or more anonymous inline boxes corresponding to the specified values, in the order specified. Its normal contents are suppressed and do not generate boxes, as if they had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
     
  - [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents)
  
-    On elements, this allows the creation of the `::contents` pseudo-element. It is useless to include [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) twice in a single `content` property, because the second occurrence simply has no effect, as there can only be a single `:contents` pseudo-element.
+    On elements, this allows the creation of the `::contents` pseudo-element. It is useless to include [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) twice in a single `content` property, because the second occurrence simply has no effect, as there can only be a single `::contents` pseudo-element.
     
-    On pseudo-elements, this makes the contents of the pseudo-element be the actual contents of the originating element. It is useless to include `contents` more than once in a single `content` property or use [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) in multiple pseudo-elements, because only the first occurrence has an effect, as there the actual contents of the originating element cannot be duplicated. It is also useless to use `contents` in multiple pseudo-elements.
+    On pseudo-elements, this makes the contents of the pseudo-element be the actual contents of the originating element. It is useless to include `contents` more than once in a single `content` property, or use [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) in multiple pseudo-elements, because only the first occurrence has an effect, as the actual contents of the originating element cannot be duplicated.
     
     When used in multiple pseudo-elements, the first occurrence is searched in the following order:
     
-    1. In the `::contents` pseudo-element, but only if [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) is used on the originating element.
+    1. In the `::contents` pseudo-element, but only if [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) appears in the computed value of the [`content`](https://drafts.csswg.org/css-content/#content-property) property of the originating element.
     2. In the [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before) pseudo-element
     3. In the [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after) pseudo-element

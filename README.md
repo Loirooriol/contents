@@ -125,21 +125,25 @@ As a [tree-abiding pseudo-element](https://www.w3.org/TR/css-pseudo-4/#treelike)
     
  - [`none`](https://drafts.csswg.org/css-content/#valdef-content-none)
   
-    On elements, this inhibits the creation of the `::contents` pseudo-element, as if the pseudo-element had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
-
-    On other pseudo-elements, this inhibits the creation of the pseudo-element as if it had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
+    On elements, this inhibits the creation of the `::contents` pseudo-element, as if that pseudo-element had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
     
     > **Note:** Inhibiting the `::contents` pseudo-element also prevents the actual contents of the element from being rendered, unless [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before) or [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after) include [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) in the computed value of their [`content`](https://drafts.csswg.org/css-content/#content-property) property.
     
+    On `::contents` pseudo-elements, this inhibits the actual children of the originating element from being rendered as children of this pseudo-element, as if the element was empty.
+    
+    > **Issue:** Should `content: none` on `::contents` completely inhibit it? This would be more consistent with other pseudo-elements, but less useful, because this would be equivalent to using `content: none` on the originating element.
+
+    On other pseudo-elements, this inhibits the creation of the pseudo-element as if it had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
+    
  - [`<content-replacement>`](https://drafts.csswg.org/css-content/#typedef-content-content-replacement)
  
-    Makes the element or pseudo-element a replaced element, filled with the specified `<image>`. Its normal contents are suppressed and do not generate boxes, as if they were [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
+    Makes the element or pseudo-element a replaced element, filled with the specified `<image>`. Its normal contents are suppressed and do not generate boxes, as if they had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
 
     > **Note:** Replaced elements do not have [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before), [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after) or `::contents` pseudo-elements; the content property replaces their entire contents.
 
  - [`<content-list>`](https://drafts.csswg.org/css-content/#typedef-content-content-list)
  
-    On elements, this replaces the `::contents` pseudo-element with one or more anonymous inline boxes corresponding to the specified values, in the order specified. Unless [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) appears in the `<content-list>`, the `::contents` pseudo-element is suppressed and does not generate boxes, as if it had [`content: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
+    On elements, this replaces the `::contents` pseudo-element with one or more anonymous inline boxes corresponding to the specified values, in the order specified. Unless [`contents`](https://drafts.csswg.org/css-content/#valdef-content-contents) appears in the `<content-list>`, the `::contents` pseudo-element is suppressed and does not generate boxes, as if it had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
     
     On pseudo-elements, this replaces the pseudo-element’s contents with one or more anonymous inline boxes corresponding to the specified values, in the order specified. Its normal contents are suppressed and do not generate boxes, as if they had [`display: none`](https://www.w3.org/TR/css-display-3/#valdef-display-none).
     

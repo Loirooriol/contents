@@ -104,6 +104,8 @@ When attached to a replaced element, the `::contents` pseudo-element has no effe
 
 ## Inheritance and the `::contents` Pseudo-element
 
+> **Issue:** This section intends to explain the magic behind `::contents` in terms of the `content` property. But Tab [said](https://github.com/w3c/csswg-drafts/issues/1195#issuecomment-293082128) that the `contents` was not supposed to affect inheritance, and that it will probably be dropped anyways.
+
 A `::contents` pseudo-element [inherits](https://www.w3.org/TR/css-cascade-4/#inheriting) from its originating element.
 
 A child element [inherits](https://www.w3.org/TR/css-cascade-4/#inheriting) [inherited properties](https://www.w3.org/TR/css-cascade-4/#inherited-property) from the `::contents` pseudo-element originated by the parent element.

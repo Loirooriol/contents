@@ -106,14 +106,19 @@ When attached to a replaced element, the `::contents` pseudo-element has no effe
 
 A `::contents` pseudo-element [inherits](https://www.w3.org/TR/css-cascade-4/#inheriting) from its originating element.
 
-A child element [inherits](https://www.w3.org/TR/css-cascade-4/#inheriting) [inherited properties](https://www.w3.org/TR/css-cascade-4/#inherited-property) from the `::contents` pseudo-element originated by the parent element.
+A child element or text node [inherits](https://www.w3.org/TR/css-cascade-4/#inheriting) [inherited properties](https://www.w3.org/TR/css-cascade-4/#inherited-property) from the `::contents` pseudo-element originated by the parent element.
+
+For [non-inherited properties](https://www.w3.org/TR/css-cascade-4/#inherited-property), inheritance is directly from the parent element.
+
+> **Note**
+> This is consistent with how [`::first-line`](https://www.w3.org/TR/css-pseudo-4/#first-line-pseudo) affects inheritance ([issue 1097](https://github.com/w3c/csswg-drafts/issues/1097)), but for `::contents` there is no need to blacklist custom properties.
 
 > **Issue:**
-> What should happen with non-inherited properties? Same as for [`::first-line`](https://www.w3.org/TR/css-pseudo-4/#first-line-pseudo) ([issue 1097](https://github.com/w3c/csswg-drafts/issues/1097))
+> Alternatively, inheritance could be from `::contents` for all properties, and assign `all: inherit; unicode-bidi: inherit; display: contents` to `::contents` in UA origin.
 
 ## Interaction with the [CSS Generated Content Module](https://drafts.csswg.org/css-content/)
 
-> **Issue:** This section intends to explain the magic behind `::contents` in terms of the `content` property. But Tab [said](https://github.com/w3c/csswg-drafts/issues/1195#issuecomment-293082128) that the `contents` was not supposed to affect inheritance, and that it will probably be dropped anyways.
+> **Issue:** This section intends to explain the magic behind `::contents` in terms of the `content` property. But Tab [said](https://github.com/w3c/csswg-drafts/issues/1195#issuecomment-293082128) that `contents` was not supposed to affect inheritance, and that it will probably be dropped anyways.
 
 As a [tree-abiding pseudo-element](https://www.w3.org/TR/css-pseudo-4/#treelike), the [`content`](https://drafts.csswg.org/css-content/#content-property) property applies to `::contents`.
 

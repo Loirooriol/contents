@@ -116,6 +116,16 @@ For [non-inherited properties](https://www.w3.org/TR/css-cascade-4/#inherited-pr
 > **Issue:**
 > Alternatively, inheritance could be from `::contents` for all properties, and assign `all: inherit; unicode-bidi: inherit; display: contents` to `::contents` in UA origin.
 
+## Interaction with [Selectors](https://drafts.csswg.org/selectors-4/)
+
+The `::contents` pseudo-element selector can be used to select the `::contents` pseudo-element.
+
+Other selectors are not affected. `::contents` is inserted between an element and its children in the [CSS element tree](https://drafts.csswg.org/css-display-3/#css-element-tree), but DOM-based relationships represented for example by the [child combinator (`>`)](https://drafts.csswg.org/selectors-4/#child-combinators) remain unaltered.
+
+The `::contents` pseudo-element can be [pseudo-classed](https://drafts.csswg.org/selectors-4/#pseudo-element-states) by [pseudo-classes](https://drafts.csswg.org/selectors-4/#pseudo-class) that can [pseudo-class](https://drafts.csswg.org/selectors/#pseudo-element-states) [`::before`](https://www.w3.org/TR/css-pseudo-4/#selectordef-before) and [`::after`](https://www.w3.org/TR/css-pseudo-4/#selectordef-after).
+
+The `::contents` pseudo-element does not define any [internal structure](https://drafts.csswg.org/selectors/#pseudo-element-structure).
+
 ## Interaction with the [CSS Generated Content Module](https://drafts.csswg.org/css-content/)
 
 > **Issue:** This section intends to explain the magic behind `::contents` in terms of the `content` property. But Tab [said](https://github.com/w3c/csswg-drafts/issues/1195#issuecomment-293082128) that `contents` was not supposed to affect inheritance, and that it will probably be dropped anyways.
